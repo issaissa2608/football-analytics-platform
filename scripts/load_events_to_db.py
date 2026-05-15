@@ -40,11 +40,19 @@ for file_name in files:
                 x, y = event["location"]
 
             end_x, end_y = None, None
+            recipient_id = None
+
             if event_type == "Pass":
-                pass_end_location = event.get("pass", {}).get("end_location")
+                pass_data = event.get("pass", {})
+
+                pass_end_location = pass_data.get("end_location")
                 if pass_end_location:
                     end_x = pass_end_location[0]
                     end_y = pass_end_location[1]
+
+                recipient = pass_data.get("recipient")
+                if recipient:
+                    recipient_id = recipient.get("id")
 
             outcome = None
 
@@ -66,10 +74,11 @@ for file_name in files:
                     x, 
                     y, 
                     end_x, 
-                    end_y, 
+                    end_y,
+                    recipient_id, 
                     outcome
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
         
   
@@ -85,6 +94,7 @@ for file_name in files:
                 y,
                 end_x,
                 end_y,
+                recipient_id,
                 outcome
             ))
 
