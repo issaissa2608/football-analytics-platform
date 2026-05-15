@@ -65,4 +65,5 @@ conn.commit()
 cur.close()
 conn.close()
 
+# print result in terminal
 print("Test football data inserted successfully")

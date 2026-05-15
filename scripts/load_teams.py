@@ -56,4 +56,5 @@ conn.commit()
 cur.close()
 conn.close()
 
+# print result in terminal
 print(f"Loaded {len(teams_seen)} teams")

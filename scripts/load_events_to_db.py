@@ -95,4 +95,5 @@ conn.commit()
 cur.close()
 conn.close()
 
+# print result in terminal
 print(f" Inserted {inserted_count} events into database")

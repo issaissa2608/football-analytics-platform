@@ -110,4 +110,5 @@ plt.savefig(
 
 plt.show()
 
+# print result in terminal
 print("Professional shot map created")

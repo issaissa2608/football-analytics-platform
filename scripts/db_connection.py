@@ -21,5 +21,7 @@ try:
     conn.close()
 
 except Exception as e:
+
+    # print result in terminal
     print("Connection failed")
     print(e)

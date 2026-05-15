@@ -173,8 +173,10 @@ plt.savefig(
     facecolor=fig.get_facecolor()
 )
 
+# show plot
 plt.show()
 
+# print result in terminal 
 print(f"Shot map created for {player_name}")
 print(f"Total shots: {len(df)}")
 print(f"Goals: {len(goals)}")
