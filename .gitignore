@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Secrets / credentials
+.env
+config.py
+secrets.json
+
+# Raw data
+data/raw/
+*.json
+
+# Local database files
+*.db
+*.sqlite
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
