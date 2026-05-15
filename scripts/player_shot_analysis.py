@@ -2,15 +2,11 @@ import psycopg2
 import pandas as pd
 import math
 
-# -----------------------------------
 # PLAYER
-# -----------------------------------
 
 player_name = "Francesca Kirby"
 
-# -----------------------------------
 # DATABASE CONNECTION
-# -----------------------------------
 
 # database connection
 conn = psycopg2.connect(
@@ -21,9 +17,7 @@ conn = psycopg2.connect(
     port="5433"
 )
 
-# -----------------------------------
 # QUERY
-# -----------------------------------
 
 query = f"""
 SELECT
@@ -45,9 +39,7 @@ df = pd.read_sql(query, conn)
 
 conn.close()
 
-# -----------------------------------
 # CALCULATE DISTANCE TO GOAL
-# -----------------------------------
 
 goal_x = 120
 goal_y = 40
@@ -63,9 +55,7 @@ df["distance_to_goal"] = df.apply(
     axis=1
 )
 
-# -----------------------------------
 # SHOT DANGER CLASSIFICATION
-# -----------------------------------
 
 def classify_shot(distance):
 
@@ -80,9 +70,8 @@ def classify_shot(distance):
 
 df["shot_danger"] = df["distance_to_goal"].apply(classify_shot)
 
-# -----------------------------------
+
 # OUTPUT
-# -----------------------------------
 
 print(df)
 

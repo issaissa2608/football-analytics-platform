@@ -110,4 +110,4 @@ plt.savefig(
 
 plt.show()
 
-print("✅ Professional shot map created")
+print("Professional shot map created")

@@ -9,7 +9,7 @@ try:
         port="5433"
     )
 
-    print("✅ Connection successful")
+    print("Connection successful")
 
     cur = conn.cursor()
     cur.execute("SELECT version();")
@@ -21,5 +21,5 @@ try:
     conn.close()
 
 except Exception as e:
-    print("❌ Connection failed")
+    print("Connection failed")
     print(e)

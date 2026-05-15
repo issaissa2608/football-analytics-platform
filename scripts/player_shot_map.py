@@ -3,15 +3,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from mplsoccer import Pitch
 
-# -----------------------------------
 # PLAYER TO ANALYSE
-# -----------------------------------
 
 player_name = "Francesca Kirby"
 
-# -----------------------------------
 # DATABASE CONNECTION
-# -----------------------------------
 
 # database connection
 conn = psycopg2.connect(
@@ -22,9 +18,7 @@ conn = psycopg2.connect(
     port="5433"
 )
 
-# -----------------------------------
 # QUERY
-# -----------------------------------
 
 query = f"""
 SELECT
@@ -50,9 +44,7 @@ df = pd.read_sql(query, conn)
 
 conn.close()
 
-# -----------------------------------
 # CALCULATE DISTANCE TO GOAL
-# -----------------------------------
 
 goal_x = 120
 goal_y = 40
@@ -65,10 +57,8 @@ df["distance_to_goal"] = df.apply(
     axis=1
 )
 
-# -----------------------------------
 # CREATE SHOT SIZE
 # Closer shots = bigger circles
-# -----------------------------------
 
 df["shot_size"] = 400 - (df["distance_to_goal"] * 15)
 
@@ -85,16 +75,12 @@ def classify_shot(distance):
 
 df["shot_danger"] = df["distance_to_goal"].apply(classify_shot)
 
-# -----------------------------------
 # SPLIT GOALS VS NON-GOALS
-# -----------------------------------
 
 goals = df[df["outcome"] == "Goal"]
 non_goals = df[df["outcome"] != "Goal"]
 
-# -----------------------------------
 # CREATE PITCH
-# -----------------------------------
 
 pitch = Pitch(
     pitch_type="statsbomb",
@@ -106,9 +92,7 @@ fig, ax = pitch.draw(figsize=(12, 8))
 
 fig.set_facecolor("#0B0D0F")
 
-# -----------------------------------
 # NON-GOAL SHOTS
-# -----------------------------------
 
 danger_colors = {
     "High Danger": "#FF4C4C",
@@ -130,9 +114,7 @@ for danger, color in danger_colors.items():
         label=danger
     )
 
-# -----------------------------------
 # GOALS
-# -----------------------------------
 
 pitch.scatter(
     goals["x"],
@@ -145,9 +127,7 @@ pitch.scatter(
     label="Goals"
 )
 
-# -----------------------------------
 # TITLES
-# -----------------------------------
 
 ax.set_title(
     f"{player_name}\nShot Map",
@@ -156,9 +136,7 @@ ax.set_title(
     pad=20
 )
 
-# -----------------------------------
 # METRICS
-# -----------------------------------
 
 fig.text(
     0.5,
@@ -169,9 +147,7 @@ fig.text(
     fontsize=14
 )
 
-# -----------------------------------
 # LEGEND
-# -----------------------------------
 
 legend = ax.legend(
     facecolor="#0B0D0F",
@@ -185,9 +161,8 @@ for text in legend.get_texts():
 
 plt.tight_layout()
 
-# -----------------------------------
 # SAVE IMAGE
-# -----------------------------------
+
 
 file_name = player_name.replace(" ", "_").lower()
 
@@ -200,6 +175,6 @@ plt.savefig(
 
 plt.show()
 
-print(f"✅ Shot map created for {player_name}")
+print(f"Shot map created for {player_name}")
 print(f"Total shots: {len(df)}")
 print(f"Goals: {len(goals)}")

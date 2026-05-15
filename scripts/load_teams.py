@@ -56,4 +56,4 @@ conn.commit()
 cur.close()
 conn.close()
 
-print(f"✅ Loaded {len(teams_seen)} teams")
+print(f"Loaded {len(teams_seen)} teams")

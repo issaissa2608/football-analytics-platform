@@ -65,4 +65,4 @@ conn.commit()
 cur.close()
 conn.close()
 
-print("✅ Test football data inserted successfully")
+print("Test football data inserted successfully")
